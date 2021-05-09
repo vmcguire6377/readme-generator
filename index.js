@@ -56,7 +56,19 @@ const promptUser = () => {
           }
         }
       },
-     
+      {
+        type: 'input',
+        name: 'license',
+        message: 'Enter your license information from the following choices: Apache 2.0, Boost Software License 1.0, BSD 3-Clause License (Required)',
+        validate: licenseInput => {
+          if (licenseInput) {
+            return true;
+          } else {
+            console.log('You need to enter your license information!');
+            return false;
+          }
+        }
+      },
       {
         type: 'input',
         name: 'contribution',
@@ -86,77 +98,29 @@ const promptUser = () => {
       {
         type: 'input',
         name: 'questions',
-        message: 'Enter your github profile link: (Required)',
-        message: 'Enter your fksjlemail address: (Required)',
+        message: 'Enter your email address, a space, and your github profile link: (Required)',
         validate: questionsInput => {
           if (questionsInput) {
             return true;
           } else {
-            console.log('You need to enter your github profile link!');
+            console.log('You need to enter your contact link!');
             return false;
           }
         }
       },
-      /*{
-      type: 'confirm',
-      name: 'confirmAbout',
-      message: 'Would you like to enter some information about yourself for an "About" section?',
-      default: true
-    },
-    {
-      type: 'input',
-      name: 'about',
-      message: 'Provide a description for your project:',
-      when: ({ confirmDesc }) => confirmDesc
-    }*/
   ]);
 };
 
-const promptProject = portfolioData => {
+const promptProject = generatorData => {
   console.log(`
-=================
-Add a New Project
-=================
+
 `);
 
-  // If there's no 'projects' array property, create one
-  if (!portfolioData.projects) {
-    portfolioData.projects = [];
+  if (!generatorData.projects) {
+    generatorData.projects = [];
   }
   return inquirer
-    .prompt([
-      {
-        type: 'input',
-        name: 'usage',
-        message: 'Enter your usage information: (Required)',
-        validate: usageInput => {
-          if (usageInput) {
-            return true;
-          } else {
-            console.log('You need to enter your usage information!');
-            return false;
-          }
-        }
-      },
-      {
-        type: 'input',
-        name: 'contribution',
-        message: 'Provide contribution information (Required)',
-        validate: contributionInput => {
-          if (contributionInput) {
-            return true;
-          } else {
-            console.log('You need to enter contribution information!');
-            return false;
-          }
-        }
-      },
-      {
-        type: 'checkbox',
-        name: 'license',
-        message: 'Select your license information: (Check all that apply)',
-        choices: ['a', 'b', 'c', 'd', 'e', 'f', 'g']
-      },
+      .prompt ([
       {
         type: 'input',
         name: 'link',
@@ -170,33 +134,22 @@ Add a New Project
           }
         }
       },
-      {
-        type: 'confirm',
-        name: 'feature',
-        message: 'Would you like to feature this project?',
-        default: false
-      },
-      {
-        type: 'confirm',
-        name: 'confirmAddProject',
-        message: 'Would you like to enter another project?',
-        default: false
-      }
     ])
+
     .then(projectData => {
-      portfolioData.projects.push(projectData);
+      generatorData.projects.push(projectData);
       if (projectData.confirmAddProject) {
-        return promptProject(portfolioData);
+        return promptProject(generatorData);
       } else {
-        return portfolioData;
+        return generatorData;
       }
     });
 };
 
 promptUser()
   .then(promptProject)
-  .then(portfolioData => {
-    return generatePage(portfolioData);
+  .then(generatorData => {
+    return generatePage(generatorData);
   })
   .then(pageHTML => {
     return writeFile(pageHTML);

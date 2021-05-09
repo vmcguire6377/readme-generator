@@ -1,40 +1,39 @@
-
 // create the page content section
-/*const generateContents = contentsArr => {
+const generateLinks = linksArr => {
   return `
-    <section class="my-3" id="portfolio">
+  <section class="my-3" id="links">
       <h2 class="text-dark bg-primary p-2 display-inline-block">Table of Contents</h2>
       <div class="flex-row justify-space-between">
       <nav>
       <ul>
         <li>
-          <a href="desc">Description</a>
+          <a href="#desc">Description</a>
       </li>
       <li>
-          <a href="install">Installation Instructions</a>
+          <a href="#install">Installation Instructions</a>
       </li>
       <li>
-          <a href="usage">Usage Information</a>
+          <a href="#usage">Usage Information</a>
       </li>
       <li>
-          <a href="license">License Information</a>
+          <a href="#license">License Information</a>
       </li>
       <li>
-          <a href="contribution">Contribution Information</a>
+          <a href="#contribution">Contribution Information</a>
       </li>
       <li>
-          <a href="tests">Testing Procedures</a>
+          <a href="#tests">Testing Procedures</a>
       </li>
       <li>
-          <a href="questions">Questions</a>
+          <a href="#questions">Questions</a>
       </li>
       </ul>
       </nav>
-
-`;
-};*/   
-    
- 
+</div>
+</section>
+  
+  `;
+};
 // create the description section
 const generateDesc = descText => {
   if (!descText) {
@@ -55,7 +54,7 @@ const generateInstall = installText => {
   }
 
   return `
-    <section class="my-3" id="desc">
+    <section class="my-3" id="install">
       <h2 class="text-dark bg-primary p-2 display-inline-block">Installation Instructions</h2>
       <p>${installText}</p>
     </section>
@@ -68,22 +67,20 @@ const generateUsage = usageText => {
   }
 
   return `
-    <section class="my-3" id="desc">
+    <section class="my-3" id="usage">
       <h2 class="text-dark bg-primary p-2 display-inline-block">Usage Information</h2>
       <p>${usageText}</p>
     </section>
   `;
 };
 // create the license section
-// create the projects section
-
 const generateLicense = licenseText => {
   if (!licenseText) {
     return 'License Information';
   }
 
   return `
-    <section class="my-3" id="desc">
+    <section class="my-3" id="license">
       <h2 class="text-dark bg-primary p-2 display-inline-block">License Information</h2>
       <p>${licenseText}</p>
     </section>
@@ -97,7 +94,7 @@ const generateContribution = contributionText => {
   }
 
   return `
-    <section class="my-3" id="desc">
+    <section class="my-3" id="contribution">
       <h2 class="text-dark bg-primary p-2 display-inline-block">Contribution Information</h2>
       <p>${contributionText}</p>
     </section>
@@ -110,7 +107,7 @@ const generateTests = testsText => {
   }
 
   return `
-    <section class="my-3" id="desc">
+    <section class="my-3" id="tests">
       <h2 class="text-dark bg-primary p-2 display-inline-block">Testing Information</h2>
       <p>${testsText}</p>
     </section>
@@ -123,8 +120,8 @@ const generateQuestions = questionsText => {
   }
 
   return `
-    <section class="my-3" id="desc">
-      <h2 class="text-dark bg-primary p-2 display-inline-block">Questions? Access the following contact information</h2>
+    <section class="my-3" id="questions">
+      <h2 class="text-dark bg-primary p-2 display-inline-block">For Questions, contact me at either the email address or my GitHub profile link listed below.</h2>
       <p>${questionsText}</p>
     </section>
   `;
@@ -132,7 +129,7 @@ const generateQuestions = questionsText => {
 // export function to generate entire page
 module.exports = templateData => {
   // destructure page data by section
-  const { projects, desc, install, usage, license, contribution, tests, questions, ...header } = templateData;
+  const { links, desc, install, usage, license, contribution, tests, questions, ...header } = templateData;
 
   return `
   <!DOCTYPE html>
@@ -159,7 +156,7 @@ module.exports = templateData => {
     </header>
     <main class="container my-5">
     
-      
+    ${generateLinks(links)}
     ${generateDesc(desc)}
       ${generateInstall(install)}
       ${generateUsage(usage)}
@@ -170,7 +167,7 @@ module.exports = templateData => {
       
     </main>
     <footer class="container text-center py-3">
-      <h3 class="text-dark">&copy;2020 by ${header.name}</h3>
+      <h3 class="text-dark">&copy;2021 by McGuire Productions</h3>
     </footer>
   </body>
   </html>
