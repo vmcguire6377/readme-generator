@@ -1,67 +1,138 @@
-// create the about section
-const generateAbout = aboutText => {
-  if (!aboutText) {
+
+// create the page content section
+/*const generateContents = contentsArr => {
+  return `
+    <section class="my-3" id="portfolio">
+      <h2 class="text-dark bg-primary p-2 display-inline-block">Table of Contents</h2>
+      <div class="flex-row justify-space-between">
+      <nav>
+      <ul>
+        <li>
+          <a href="desc">Description</a>
+      </li>
+      <li>
+          <a href="install">Installation Instructions</a>
+      </li>
+      <li>
+          <a href="usage">Usage Information</a>
+      </li>
+      <li>
+          <a href="license">License Information</a>
+      </li>
+      <li>
+          <a href="contribution">Contribution Information</a>
+      </li>
+      <li>
+          <a href="tests">Testing Procedures</a>
+      </li>
+      <li>
+          <a href="questions">Questions</a>
+      </li>
+      </ul>
+      </nav>
+
+`;
+};*/   
+    
+ 
+// create the description section
+const generateDesc = descText => {
+  if (!descText) {
     return '';
   }
 
   return `
-    <section class="my-3" id="about">
-      <h2 class="text-dark bg-primary p-2 display-inline-block">About Me</h2>
-      <p>${aboutText}</p>
+    <section class="my-3" id="desc">
+      <h2 class="text-dark bg-primary p-2 display-inline-block">Description</h2>
+      <p>${descText}</p>
     </section>
   `;
 };
+// create the install section
+const generateInstall = installText => {
+  if (!installText) {
+    return '';
+  }
 
-// create the projects section
-const generateProjects = projectsArr => {
   return `
-    <section class="my-3" id="portfolio">
-      <h2 class="text-dark bg-primary p-2 display-inline-block">Work</h2>
-      <div class="flex-row justify-space-between">
-      ${projectsArr
-        .filter(({ feature }) => feature)
-        .map(({ name, description, languages, link }) => {
-          return `
-          <div class="col-12 mb-2 bg-dark text-light p-3">
-            <h3 class="portfolio-item-title text-light">${name}</h3>
-            <h5 class="portfolio-languages">
-              Built With:
-              ${languages.map(language => language).join(',')}
-            </h5>
-            <p>${description}</p>
-            <a href="${link}" class="btn"><i class="fab fa-github mr-2"></i>View Project on GitHub</a>
-          </div>
-        `;
-        })
-        .join('')}
+    <section class="my-3" id="desc">
+      <h2 class="text-dark bg-primary p-2 display-inline-block">Installation Instructions</h2>
+      <p>${installText}</p>
+    </section>
+  `;
+};
+// create the usage section
+const generateUsage = usageText => {
+  if (!usageText) {
+    return '';
+  }
 
-      ${projectsArr
-        .filter(({ feature }) => !feature)
-        .map(({ name, description, languages, link }) => {
-          console.log(languages);
-          return `
-          <div class="col-12 col-md-6 mb-2 bg-dark text-light p-3 flex-column">
-            <h3 class="portfolio-item-title text-light">${name}</h3>
-            <h5 class="portfolio-languages">
-              Built With:
-              ${languages.join(', ')}
-            </h5>
-            <p>${description}</p>
-            <a href="${link}" class="btn mt-auto"><i class="fab fa-github mr-2"></i>View Project on GitHub</a>
-          </div>
-        `;
-        })
-        .join('')}
-    
-      </div>
+  return `
+    <section class="my-3" id="desc">
+      <h2 class="text-dark bg-primary p-2 display-inline-block">Usage Information</h2>
+      <p>${usageText}</p>
+    </section>
+  `;
+};
+// create the license section
+// create the projects section
+
+const generateLicense = licenseText => {
+  if (!licenseText) {
+    return 'License Information';
+  }
+
+  return `
+    <section class="my-3" id="desc">
+      <h2 class="text-dark bg-primary p-2 display-inline-block">License Information</h2>
+      <p>${licenseText}</p>
     </section>
   `;
 };
 
+// create the contribution section
+const generateContribution = contributionText => {
+  if (!contributionText) {
+    return '';
+  }
+
+  return `
+    <section class="my-3" id="desc">
+      <h2 class="text-dark bg-primary p-2 display-inline-block">Contribution Information</h2>
+      <p>${contributionText}</p>
+    </section>
+  `;
+};
+// create the tests section
+const generateTests = testsText => {
+  if (!testsText) {
+    return '';
+  }
+
+  return `
+    <section class="my-3" id="desc">
+      <h2 class="text-dark bg-primary p-2 display-inline-block">Testing Information</h2>
+      <p>${testsText}</p>
+    </section>
+  `;
+};
+// create the questions section
+const generateQuestions = questionsText => {
+  if (!questionsText) {
+    return '';
+  }
+
+  return `
+    <section class="my-3" id="desc">
+      <h2 class="text-dark bg-primary p-2 display-inline-block">Questions? Access the following contact information</h2>
+      <p>${questionsText}</p>
+    </section>
+  `;
+};
 // export function to generate entire page
 module.exports = templateData => {
   // destructure page data by section
-  const { projects, about, ...header } = templateData;
+  const { projects, desc, install, usage, license, contribution, tests, questions, ...header } = templateData;
 
   return `
   <!DOCTYPE html>
@@ -87,8 +158,16 @@ module.exports = templateData => {
       </div>
     </header>
     <main class="container my-5">
-      ${generateAbout(about)}
-      ${generateProjects(projects)}
+    
+      
+    ${generateDesc(desc)}
+      ${generateInstall(install)}
+      ${generateUsage(usage)}
+      ${generateLicense(license)}
+      ${generateContribution(contribution)}
+      ${generateTests(tests)}
+      ${generateQuestions(questions)}
+      
     </main>
     <footer class="container text-center py-3">
       <h3 class="text-dark">&copy;2020 by ${header.name}</h3>

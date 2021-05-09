@@ -7,30 +7,97 @@ const promptUser = () => {
     {
       type: 'input',
       name: 'name',
-      message: 'What is your name? (Required)',
+      message: 'What is your project name? (Required)',
       validate: nameInput => {
         if (nameInput) {
           return true;
         } else {
-          console.log('Please enter your name!');
+          console.log('Please enter your project name!');
           return false;
         }
       }
     },
     {
       type: 'input',
-      name: 'github',
-      message: 'Enter your GitHub Username (Required)',
-      validate: githubInput => {
-        if (githubInput) {
+      name: 'desc',
+      message: 'Enter your project description: (Required)',
+      validate: projectInput => {
+        if (projectInput) {
           return true;
         } else {
-          console.log('Please enter your GitHub username!');
+          console.log('Please enter your project description!');
           return false;
         }
       }
     },
     {
+        type: 'input',
+        name: 'install',
+        message: 'Enter your installation instructions: (Required)',
+        validate: installInput => {
+          if (installInput) {
+            return true;
+          } else {
+            console.log('Please enter your installation instructions!');
+            return false;
+          }
+        }
+      },
+      {
+        type: 'input',
+        name: 'usage',
+        message: 'Enter your usage information: (Required)',
+        validate: usageInput => {
+          if (usageInput) {
+            return true;
+          } else {
+            console.log('You need to enter your usage information!');
+            return false;
+          }
+        }
+      },
+     
+      {
+        type: 'input',
+        name: 'contribution',
+        message: 'Enter your contribution information: (Required)',
+        validate: contributionInput => {
+          if (contributionInput) {
+            return true;
+          } else {
+            console.log('You need to enter your contribution information!');
+            return false;
+          }
+        }
+      },
+      {
+        type: 'input',
+        name: 'tests',
+        message: 'Enter your testing information: (Required)',
+        validate: testsInput => {
+          if (testsInput) {
+            return true;
+          } else {
+            console.log('You need to enter your testing information!');
+            return false;
+          }
+        }
+      },
+      {
+        type: 'input',
+        name: 'questions',
+        message: 'Enter your github profile link: (Required)',
+        message: 'Enter your fksjlemail address: (Required)',
+        validate: questionsInput => {
+          if (questionsInput) {
+            return true;
+          } else {
+            console.log('You need to enter your github profile link!');
+            return false;
+          }
+        }
+      },
+      /*{
       type: 'confirm',
       name: 'confirmAbout',
       message: 'Would you like to enter some information about yourself for an "About" section?',
@@ -39,9 +106,9 @@ const promptUser = () => {
     {
       type: 'input',
       name: 'about',
-      message: 'Provide some information about yourself:',
-      when: ({ confirmAbout }) => confirmAbout
-    }
+      message: 'Provide a description for your project:',
+      when: ({ confirmDesc }) => confirmDesc
+    }*/
   ]);
 };
 
@@ -60,35 +127,35 @@ Add a New Project
     .prompt([
       {
         type: 'input',
-        name: 'name',
-        message: 'What is the name of your project? (Required)',
-        validate: nameInput => {
-          if (nameInput) {
+        name: 'usage',
+        message: 'Enter your usage information: (Required)',
+        validate: usageInput => {
+          if (usageInput) {
             return true;
           } else {
-            console.log('You need to enter a project name!');
+            console.log('You need to enter your usage information!');
             return false;
           }
         }
       },
       {
         type: 'input',
-        name: 'description',
-        message: 'Provide a description of the project (Required)',
-        validate: descriptionInput => {
-          if (descriptionInput) {
+        name: 'contribution',
+        message: 'Provide contribution information (Required)',
+        validate: contributionInput => {
+          if (contributionInput) {
             return true;
           } else {
-            console.log('You need to enter a project description!');
+            console.log('You need to enter contribution information!');
             return false;
           }
         }
       },
       {
         type: 'checkbox',
-        name: 'languages',
-        message: 'What did you this project with? (Check all that apply)',
-        choices: ['JavaScript', 'HTML', 'CSS', 'ES6', 'jQuery', 'Bootstrap', 'Node']
+        name: 'license',
+        message: 'Select your license information: (Check all that apply)',
+        choices: ['a', 'b', 'c', 'd', 'e', 'f', 'g']
       },
       {
         type: 'input',
