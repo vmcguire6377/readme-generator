@@ -8,5 +8,9 @@ title, description, installation information, usage information, license informa
 The application includes a table of contents with functional links to the page sections.
 Following user input responses to the prompts, the page is generated with specific answers appearing in the corresponding page sections.
 
+This application was created with node.js, css, package.json, npm, and inquirer.
+
+https://github.com/vmcguire6377/readme-generator
+
 
 ![readme](https://user-images.githubusercontent.com/79176079/117603178-b1c47480-b10f-11eb-80cc-a905bf90abc2.PNG)
