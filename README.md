@@ -10,7 +10,6 @@ Following user input responses to the prompts, the page is generated with specif
 
 This application was created with node.js, css, package.json, npm, and inquirer.
 
-https://github.com/vmcguire6377/readme-generator
-
+Walk-through video link:https://drive.google.com/file/d/1PWiIQDD27IulZ_VSrTk_POzBxlvEDOnB/view
 
 ![readme](https://user-images.githubusercontent.com/79176079/117603178-b1c47480-b10f-11eb-80cc-a905bf90abc2.PNG)
