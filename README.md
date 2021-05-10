@@ -1,4 +1,3 @@
-![readme](https://user-images.githubusercontent.com/79176079/117602960-2519b680-b10f-11eb-8677-44a7fdf0832b.PNG)
 # Professional README Generator Starter Code
 
 [How to create a Professional README](./readme-guide.md)
